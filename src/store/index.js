@@ -3,13 +3,22 @@ import Vuex from "vuex"
 
 Vue.use(Vuex);
 
-export default new Vuex.Store({
+const store = new Vuex.Store({
     state: {
-        USD: null,
-        EUR: null,
-        GBP: null,
-        CZK: null
+        currenc: {
+            USD: null,
+            EUR: null,
+            GBP: null,
+            CZK: null
+        },
+        selected: null
     },
-    mutations:
-        set
+    getters: {
+        currenc: state => Object.keys(state.currenc)
+    },
+    mutations: {
+        setCurrency(state, value) {state.selected = value},
+        setRate(state, rate) {state.currency.selected = rate}
+    }
 })
+export default store;
