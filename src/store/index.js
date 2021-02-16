@@ -11,14 +11,14 @@ const store = new Vuex.Store({
             GBP: null,
             CZK: null
         },
-        selected: null
+        selected: ''
     },
     getters: {
         currenc: state => Object.keys(state.currenc)
     },
     mutations: {
-        setCurrency(state, value) {state.selected = value},
-        setRate(state, rate) {state.currency.selected = rate}
+        setCurrenc(state, value) {state.selected = value},
+        // setRate(state, rate) {state.currency.selected = rate}
     }
 })
 export default store;

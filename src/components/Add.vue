@@ -1,39 +1,44 @@
 <template>
   <div>
-    <select v-model="selected" @input="setCurrency" >
-      <option v-for="elem in currenc" v-bind:value="elem" :key="elem">{{ elem }}</option>
+    <select v-model="selected">
+      <option v-for="elem in currenc" :value="elem" :key="elem">{{ elem }}</option>
     </select>
-    <input type="number" :value="rate" @input="addCurrencyRate" />
-    <button>Save Currency</button>
+    <input type="number" :value="(e)=> rate = event.target.value"  />
+    <button @click="addCurrencyRate">Save Currency</button>
     <span>wybrana waluta: {{selected}} </span>
   </div>
 </template>
 
 <script>
-import { mapGetters, mapState } from 'vuex';
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'Add',
   data: function() {
     return {
-      selected: '',
+      rate: ''
     }
   },
   computed: {
     ...mapGetters([
       'currenc'
     ]),
-    ...mapState([
-      'selected'
-    ])
+    selected: {
+      get() {
+        return this.$store.state.selected
+      },
+      set(value) {
+        this.$store.commit("setCurrenc", value)
+      }
+    }
   },
   methods: {
-    setCurrency(selected) {
-      this.$store.commit('setCurrency', selected.target.value)
-      console.log(selected.target.value)
-    },
-    addCurrencyRate(e) {
-      this.$store.commit('setRate', e.target.value)
+    // setCurrency() {
+    //   this.$store.commit('setCurrency', this.selected)
+    //   // console.log(selected.target.value)
+    // },
+    addCurrencyRate(rate) {
+      this.$store.commit('setRate', rate)
     }
   },
 }
