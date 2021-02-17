@@ -3,7 +3,6 @@
     <h2>Currency Exchange App</h2>
     <div class="container">
     <div id="nav" class="nav">
-      <router-link class="link" to="/">Home</router-link>
       <router-link class="link" to="/add">Add currency</router-link>
       <router-link class="link" to="/table">Currency table</router-link>
       <router-link class="link" to="/convert">Currency convert</router-link>

@@ -1,11 +1,12 @@
 <template>
   <div>
     <select v-model="selected">
+      <option disabled >select</option>
       <option v-for="elem in currenc" :value="elem" :key="elem">{{ elem }}</option>
     </select>
-    <input type="number" :value="(e)=> rate = event.target.value"  />
+    <input type="number" v-model="inputVal" />
     <button @click="addCurrencyRate">Save Currency</button>
-    <span>wybrana waluta: {{selected}} </span>
+    <span> {{(selected === 'select') ? 'wybierz walutę' : `wybrana waluta: ${selected}`}} </span>
   </div>
 </template>
 
@@ -16,7 +17,7 @@ export default {
   name: 'Add',
   data: function() {
     return {
-      rate: ''
+      inputVal: null
     }
   },
   computed: {
@@ -33,13 +34,11 @@ export default {
     }
   },
   methods: {
-    // setCurrency() {
-    //   this.$store.commit('setCurrency', this.selected)
-    //   // console.log(selected.target.value)
-    // },
-    addCurrencyRate(rate) {
-      this.$store.commit('setRate', rate)
-    }
+    addCurrencyRate() {
+      this.$store.commit('setRate', this.inputVal)
+      this.inputVal= 0;
+      this.selected = "select"
+    },
   },
 }
 

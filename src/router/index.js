@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../App.vue'
 import Add from '@/components/Add.vue'
 import Convert from '@/components/Convert.vue'
 import Table from '@/components/Table.vue'
@@ -8,11 +7,6 @@ import Table from '@/components/Table.vue'
 Vue.use(VueRouter)
 
 const routes = [
-  {
-    path: '/',
-    name: 'Home',
-    component: Home
-  },
   {
     path: '/add',
     name: 'Add',
