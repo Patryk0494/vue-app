@@ -1,13 +1,10 @@
 <template>
-    <div>
-        <h2>Convert</h2>
-        <div>
-            <input type="number" v-model="quantity" @change="convertQuantity">
-            <select name="currenc" v-model="chooseCurrenc">
-                <option v-for="(value, name) in tableData" v-bind:key=" name">{{ value && name }}</option>
-            </select>
-            <span>{{result}}</span>
-        </div>
+    <div class="content ">
+        <input type="number" v-model="quantity" @input="convertQuantity">
+        <select name="currenc" v-model="chooseCurrenc" @change="convertQuantity">
+            <option v-for="(value, name) in tableData" v-bind:key="name">{{ value && name }}</option>
+        </select>
+        <span>In PLN {{result}}</span>
     </div>
     
 </template>
@@ -20,7 +17,7 @@ export default {
         return {
             quantity: null,
             result: null,
-            chooseCurrenc: ''
+            chooseCurrenc: '',
         }
     },
         computed: {
@@ -30,14 +27,15 @@ export default {
     },
     methods: {
         convertQuantity() {
-            this.result = this.quantity * this.$store.state.currenc[this.chooseCurrenc]
-            console.log(this.result, this.quantity)
-            console.log(this.$store.state.currenc[this.chooseCurrenc])
+            setTimeout(() => {this.result = this.quantity * this.$store.state.currenc[this.chooseCurrenc]}, 800 )
         }
     }
 }
 </script>
 
-<style>
-
+<style scoped>
+    .convert {
+        display: flex;
+        flex-direction: row;
+    }
 </style>

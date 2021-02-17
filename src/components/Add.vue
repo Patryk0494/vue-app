@@ -1,12 +1,12 @@
 <template>
-  <div>
-    <select v-model="selected">
+  <div class="content">
+    <span> {{(selected === 'select') ? 'select currenc' : `selected currenc: `}} </span>
+    <select v-model="selected" >
       <option disabled >select</option>
-      <option v-for="elem in currenc" :value="elem" :key="elem">{{ elem }}</option>
+      <option v-for="(value, name)  in tableData" :value="name" :key="name">{{ name }}</option>
     </select>
     <input type="number" v-model="inputVal" />
     <button @click="addCurrencyRate">Save Currency</button>
-    <span> {{(selected === 'select') ? 'wybierz walutę' : `wybrana waluta: ${selected}`}} </span>
   </div>
 </template>
 
@@ -22,7 +22,7 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'currenc'
+      'tableData'
     ]),
     selected: {
       get() {
@@ -36,7 +36,7 @@ export default {
   methods: {
     addCurrencyRate() {
       this.$store.commit('setRate', this.inputVal)
-      this.inputVal= 0;
+      this.inputVal= null;
       this.selected = "select"
     },
   },
@@ -44,6 +44,5 @@ export default {
 
 </script>
 
-<style scoped lang="sass">
-
+<style scoped>
 </style>

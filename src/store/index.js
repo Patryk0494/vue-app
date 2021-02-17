@@ -14,7 +14,6 @@ const store = new Vuex.Store({
         selected: 'select'
     },
     getters: {
-        currenc: state => Object.keys(state.currenc),
         tableData: state => state.currenc
     },
     mutations: {

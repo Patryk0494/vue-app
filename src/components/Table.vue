@@ -1,18 +1,16 @@
 <template>
-    <div>
-        <h2>Table</h2>
-        <table>
-            <tr>
-                <th>Currency</th>
-                <th>Currency Rate</th>
+    <div class="content">
+        <table class="table">
+            <tr class="table--headline">
+                <th class="col1">Currency</th>
+                <th class="col2">Currency Rate</th>
             </tr>
-            <tr v-for="value in tableData" v-bind:key="value[0]">
-                <td>{{ value[1] && value[0] }}</td>
-                <td>{{ value[1] }}</td>
+            <tr v-for="(value, name) in tableData" v-bind:key="name" class="table--row">
+                <td v-if="value !== null">{{ value && name }}</td>
+                <td v-if="value !== null">{{ value }}</td>
             </tr>
         </table>
     </div>
-    
 </template>
 
 <script>
@@ -29,6 +27,20 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+    table {
+        width: 80%;
+        border-collapse: collapse;
+        line-height: 180%;
+        text-align: center;
+    }
+    table, td, tr, th {
+        border: 1px solid black;
+    }
+
+    th.col1, th.col2 {
+        width: 50%;
+    }
+
 
 </style>
